@@ -1,0 +1,25 @@
+vcf_file:
+  path: /home/anibal/vcf_files
+  name: freebayes_D2.filtered
+  extension: vcf
+  
+window_size: 5000000
+step_size: 5000000
+
+samples:
+  control: con-all
+  mutant: D2
+  F2_wild_type: D2_F2_TT
+  F2_mutant: D2_F2_tt
+
+chromosomes:
+  - Chr01
+  - Chr02
+  - Chr03
+  - Chr04
+  - Chr05
+  - Chr06
+  - Chr07
+  - Chr08
+  - Chr09
+  - Chr10

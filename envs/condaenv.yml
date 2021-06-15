@@ -1,0 +1,14 @@
+name: QTL-BSA
+
+channels: 
+  - defaults
+  - bioconda
+  - conda-forge
+
+dependencies:
+  - python=3.6.7
+  - bcftools
+  - pandas
+  - matplotlib
+  - seaborn
+  - scikit-allel
