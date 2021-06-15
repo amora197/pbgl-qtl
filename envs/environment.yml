@@ -7,6 +7,8 @@ channels:
 
 dependencies:
   - python=3.6.7
+  - notebook
+  - natsort
   - bcftools
   - pandas
   - matplotlib

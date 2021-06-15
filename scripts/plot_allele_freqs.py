@@ -182,8 +182,8 @@ def chrom_length_extraction(vcf_file, chromosome_list):
 
     return OrderedDict(chrom_lengths)
 
-# main code to plot allele frequencies
-def plot_allele_frequencies(config_file):
+# plot raw allele frequencies
+def plot_allele_frequencies_raw(config_file):
     # open and read config file
     with open(config_file) as file:
         config = yaml.load(file, Loader=yaml.FullLoader)
@@ -245,10 +245,70 @@ def plot_allele_frequencies(config_file):
     plot_table = table[(table['sample'] == sample_F2_mutant) | (table['sample'] == sample_F2_WT)]
     plot = sns.relplot(data=plot_table, x='POS', y='mutant_freq', row='CHROM', style='sample',hue='sample', aspect=7.0, height=4., kind='line', markers=True, dashes=False, linewidth=0.5)
     plot.savefig(raw_output_pdf)
-    wtable = get_window_table(table, sample_F2_mutant, sample_F2_WT, window_size, step_size, chromosome_lengths)
+
     
+# plot weighted allele frequencies
+def plot_allele_frequencies_weighted(config_file):    
+    # open and read config file
+    with open(config_file) as file:
+        config = yaml.load(file, Loader=yaml.FullLoader)
+        
+    # extract VCF file 
+    vcf_file = config['vcf_file']
+    vcf_file_path = vcf_file['path']
+    vcf_file_name = vcf_file['name']
+    vcf_file_ext = vcf_file['extension']
+    
+    # step and window sizes
+    window_size = config['window_size']
+    step_size = config['step_size']
+    
+    # chromosomes extraction
+    chromosomes = config['chromosomes']
+    vcf_file_full_path = "%s/%s.%s" % (vcf_file_path, vcf_file_name, vcf_file_ext)
+    chromosome_lengths = chrom_length_extraction(vcf_file_full_path, chromosomes)
+    
+    # samples ordered as: control, mutant, dwarf/mutant F2 pool, WT F2 pool
+    control = config['samples']['control']
+    mutant = config['samples']['mutant']
+    sample_F2_WT = config['samples']['F2_wild_type']
+    sample_F2_mutant = config['samples']['F2_mutant']
+    samples = [control, mutant, sample_F2_mutant, sample_F2_WT]
+    
+    # TSV file creation with bash commands
+    cmd_create_tsv = 'printf "#Samples:%s,%s,%s,%s\nCHROM\\tPOS\\tREF\\tALT\\tRO\\tAO\\tGT\\tGQ\\tSampleRO\\tSampleAO\n" > "Allele_Frequency_Plots_Computomics/%s.tsv"' % (
+        samples[0], samples[1], samples[2], samples[3], vcf_file_name)
+    os.system(cmd_create_tsv)
+    
+    data_flag = r'-f "%CHROM\t%POS\t%REF\t%ALT\t%RO\t%AO\t[,%GT]\t[,%GQ]\t[,%RO]\t[,%AO]\n"'
+    cmd_bcftools = 'bcftools view %s/%s.%s -s %s,%s,%s,%s | bcftools query %s >> Allele_Frequency_Plots_Computomics/%s.tsv' % (
+        vcf_file_path, vcf_file_name, vcf_file_ext,
+        samples[0], samples[1], samples[2], samples[3],
+        data_flag, vcf_file_name)
+    os.system(cmd_bcftools)
+    
+    # TSV file paths
+    tsv_file = "Allele_Frequency_Plots_Computomics/%s.tsv" % vcf_file_name
+    raw_output = "Allele_Frequency_Plots_Computomics/%s.pdf" % vcf_file_name
+    raw_output_window = "Allele_Frequency_Plots_Computomics/%s_window.pdf" % vcf_file_name
+    
+    # Define input table paths
+    tsv_file = Path(tsv_file)
+    raw_output_pdf = Path(raw_output)
+    window_output_pdf = Path(raw_output_window)
+    
+    # Load TSV table
+    raw_table = pd.read_csv(tsv_file, sep='\t', na_values=['.'], comment='#')
+    
+    # Remove leading commas
+    for col in ['GT', 'GQ', 'SampleRO', 'SampleAO']:
+        raw_table.loc[:,col] = raw_table[col].str[1:]
+        
+    table = getTidyTable(raw_table, samples, chromosome_lengths)
+        
     # Plot the per-window average allele frequencies
     # Create one subplot per chromosome
+    wtable = get_window_table(table, sample_F2_mutant, sample_F2_WT, window_size, step_size, chromosome_lengths)
     wgrid = sns.FacetGrid(wtable, row='CHROM', aspect=7.0, height=4., hue='sample', legend_out=True)
 
     # Plot lines
@@ -265,5 +325,3 @@ def plot_allele_frequencies(config_file):
                         ax=wgrid.axes[i,0], sizes=sizes)
     # save figure
     wgrid.savefig(window_output_pdf)
-    
-    
