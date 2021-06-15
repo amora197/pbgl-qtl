@@ -1,0 +1,16 @@
+vcf_file:
+  path: 
+  name: 
+  extension: 
+  
+window_size: 
+step_size: 
+
+samples:
+  control: 
+  mutant: 
+  F2_wild_type: 
+  F2_mutant: 
+
+chromosomes:
+  - 

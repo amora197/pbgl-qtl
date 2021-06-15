@@ -194,10 +194,6 @@ def plot_allele_frequencies_raw(config_file):
     vcf_file_name = vcf_file['name']
     vcf_file_ext = vcf_file['extension']
     
-    # step and window sizes
-    window_size = config['window_size']
-    step_size = config['step_size']
-    
     # chromosomes extraction
     chromosomes = config['chromosomes']
     vcf_file_full_path = "%s/%s.%s" % (vcf_file_path, vcf_file_name, vcf_file_ext)
@@ -248,7 +244,7 @@ def plot_allele_frequencies_raw(config_file):
 
     
 # plot weighted allele frequencies
-def plot_allele_frequencies_weighted(config_file):    
+def plot_allele_frequencies_weighted(config_file, window_size=None, step_size=None):    
     # open and read config file
     with open(config_file) as file:
         config = yaml.load(file, Loader=yaml.FullLoader)
@@ -260,8 +256,10 @@ def plot_allele_frequencies_weighted(config_file):
     vcf_file_ext = vcf_file['extension']
     
     # step and window sizes
-    window_size = config['window_size']
-    step_size = config['step_size']
+    if window_size == None:
+        window_size = config['window_size']
+    if step_size == None:
+        step_size = config['step_size']
     
     # chromosomes extraction
     chromosomes = config['chromosomes']
