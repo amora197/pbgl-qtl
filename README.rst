@@ -6,9 +6,6 @@
 PBGL QTL-BSA Analysis
 =====================
 
-.. toctree::
-   :maxdepth: 4
-
 Background
 ----------
 
