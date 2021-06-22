@@ -573,7 +573,7 @@ Run the **Weighted Window Sizes Defined in Jupyter Notebook** subsection with bi
    
    Allele frequency plot with window_size=5000000 and step_size=1000000
 
-This last plot using `window_size=5000000` and `step_size=1000000` clearly shows a variant present in Chr04. Knowing where artifacts like this one is located plays a major role in identifying and visualizing variants in an organism. The user can, in turn, use different tools, like the Integrative Genomics Viewer (IGV), for further analysis.
+This last plot using `window_size=5000000` and `step_size=1000000` clearly shows a variant present in Chr04. Knowing where artifacts like this one are located plays a major role in identifying and visualizing variants in an organism. The user can, in turn, use different tools, like the Integrative Genomics Viewer (IGV), for further analysis.
 
 This culminates the tutorial.
 
