@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.12.3)  15 JUN 2021 11:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.12.3)  22 JUN 2021 11:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1046,29 +1046,29 @@ Writing index file pbgl-qtl-bsa.idx
 (./pbgl-qtl-bsa.aux)
 \openout1 = `pbgl-qtl-bsa.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 83.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 83.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 82.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 82.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 83.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 82.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
@@ -1140,7 +1140,7 @@ e
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box72
-Package hyperref Info: Link coloring ON on input line 83.
+Package hyperref Info: Link coloring ON on input line 82.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
@@ -1149,76 +1149,175 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count146
 )
-LaTeX Info: Redefining \ref on input line 83.
-LaTeX Info: Redefining \pageref on input line 83.
-LaTeX Info: Redefining \nameref on input line 83.
+LaTeX Info: Redefining \ref on input line 82.
+LaTeX Info: Redefining \pageref on input line 82.
+LaTeX Info: Redefining \nameref on input line 82.
 
 (./pbgl-qtl-bsa.out) (./pbgl-qtl-bsa.out)
 \@outlinefile=\write5
 \openout5 = `pbgl-qtl-bsa.out'.
 
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 90.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 89.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 90.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 89.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 92.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 91.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 107.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 110.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for T1+phv on input line 114.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 117.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 114.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 117.
 
-(./pbgl-qtl-bsa.toc)
+(./pbgl-qtl-bsa.toc<<ot1.cmap>><<oml.cmap>><<oms.cmap>><<omx.cmap>>
+LaTeX Font Info:    Try loading font information for U+msa on input line 4.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 4.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+))
 \tf@toc=\write6
 \openout6 = `pbgl-qtl-bsa.toc'.
 
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 120.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 123.
  [1
 
+] [2
+
 ]
-LaTeX Font Info:    Try loading font information for TS1+ptm on input line 122.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 142.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 147.
+LaTeX Font Info:    Try loading font information for TS1+ptm on input line 152.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-) (./pbgl-qtl-bsa.ind)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 140.
-[2
+)
+<terminal_base_env.png, id=143, 944.52875pt x 459.7175pt>
+File: terminal_base_env.png Graphic file (type png)
+<use terminal_base_env.png>
+Package pdftex.def Info: terminal_base_env.png  used on input line 171.
+(pdftex.def)             Requested size: 469.75546pt x 228.63762pt.
+<terminal_base_env_detail.png, id=145, 359.3425pt x 76.285pt>
+File: terminal_base_env_detail.png Graphic file (type png)
+<use terminal_base_env_detail.png>
+Package pdftex.def Info: terminal_base_env_detail.png  used on input line 177.
+(pdftex.def)             Requested size: 359.34161pt x 76.2848pt.
+ [3
+
+ <./terminal_base_env.png> <./terminal_base_env_detail.png>]
+LaTeX Font Info:    Try loading font information for TS1+pcr on input line 220.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1pcr.fd
+File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
+) [4] [5]
+LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <9> not available
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 429.
+ [6
+
+] [7]
+LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <9> not available
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 570.
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 686--688
+[][][]$\T1/ptm/m/n/10 https : / / bss1innov1nafa1poc1 . blob . core . windows .
+ net / sample-[]container / 2021 _ Training / freebayes _ D2 .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 696--698
+[][][]$\T1/ptm/m/n/10 https : / / bss1innov1nafa1poc1 . blob . core . windows .
+ net / sample-[]container / 2021 _ Training / freebayes _ D2 .
+ []
+
+[9
+
+] [10] [11]
+<allele-freq-raw.png, id=213, 2126.94624pt x 2882.77pt>
+File: allele-freq-raw.png Graphic file (type png)
+<use allele-freq-raw.png>
+Package pdftex.def Info: allele-freq-raw.png  used on input line 899.
+(pdftex.def)             Requested size: 469.74709pt x 636.67467pt.
+
+
+LaTeX Warning: Float too large for page by 10.42033pt on input line 900.
+
+<tsv-file.png, id=214, 1283.79625pt x 967.615pt>
+File: tsv-file.png Graphic file (type png)
+<use tsv-file.png>
+Package pdftex.def Info: tsv-file.png  used on input line 951.
+(pdftex.def)             Requested size: 469.7473pt x 354.05504pt.
+<allele-freq-nb.png, id=215, 2109.8825pt x 2878.755pt>
+File: allele-freq-nb.png Graphic file (type png)
+<use allele-freq-nb.png>
+Package pdftex.def Info: allele-freq-nb.png  used on input line 971.
+(pdftex.def)             Requested size: 469.74518pt x 640.9273pt.
+
+LaTeX Warning: Float too large for page by 14.67563pt on input line 972.
+
+<allele-freq-config.png, id=216, 2109.8825pt x 2878.755pt>
+File: allele-freq-config.png Graphic file (type png)
+<use allele-freq-config.png>
+Package pdftex.def Info: allele-freq-config.png  used on input line 988.
+(pdftex.def)             Requested size: 469.74518pt x 640.9273pt.
+
+LaTeX Warning: Float too large for page by 14.67563pt on input line 989.
+
+[12] [13 <./allele-freq-raw.png>] [14 <./tsv-file.png>] [15 <./allele-freq-nb.p
+ng>] [16 <./allele-freq-config.png>] [17] (./pbgl-qtl-bsa.ind)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1021.
+ [18
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 140.
- (./pbgl-qtl-bsa.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 140.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 140.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1021.
+
+(./pbgl-qtl-bsa.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1021.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1021.
+
 Package rerunfilecheck Info: File `pbgl-qtl-bsa.out' has not changed.
-(rerunfilecheck)             Checksum: 7A263B74350AA9A54C5CF04BA67F52F6;139.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 140.
+(rerunfilecheck)             Checksum: 3903BBE3579FD52D410F996A500874F3;4512.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1021.
  ) 
 Here is how much of TeX's memory you used:
- 13644 strings out of 492982
- 189471 string characters out of 6134896
- 280144 words of memory out of 5000000
- 16953 multiletter control sequences out of 15000+600000
- 33719 words of font info for 36 fonts, out of 8000000 for 9000
+ 13932 strings out of 492982
+ 194096 string characters out of 6134896
+ 302716 words of memory out of 5000000
+ 17118 multiletter control sequences out of 15000+600000
+ 50014 words of font info for 61 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 37i,11n,45p,695b,456s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,11n,45p,836b,490s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
-w/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a
-.pfb>
-Output written on pbgl-qtl-bsa.pdf (3 pages, 46781 bytes).
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
+w/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucr
+ro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/urw/times/utmri8a.pfb>
+Output written on pbgl-qtl-bsa.pdf (19 pages, 2115609 bytes).
 PDF statistics:
- 46 PDF objects out of 1000 (max. 8388607)
- 35 compressed objects within 1 object stream
- 6 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 306 PDF objects out of 1000 (max. 8388607)
+ 256 compressed objects within 3 object streams
+ 65 named destinations out of 1000 (max. 500000)
+ 235 words of extra memory for PDF output out of 10000 (max. 10000000)
 

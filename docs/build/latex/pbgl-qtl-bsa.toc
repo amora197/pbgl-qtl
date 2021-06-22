@@ -1,2 +1,24 @@
 \babel@toc {english}{}
-\contentsline {section}{\numberline {1}Indices and tables}{2}{section.1}
+\contentsline {section}{\numberline {1}Background}{2}{section.1}
+\contentsline {section}{\numberline {2}Installations \sphinxhyphen {} Virtual Environments and Software Packages}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}Miniconda3 (conda) and Mamba}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Git Installation and Repo Cloning}{4}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Required Libraries with Mamba}{4}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}Automatically (faster)}{5}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2}Manually (slower)}{5}{subsubsection.2.3.2}
+\contentsline {section}{\numberline {3}Running Jupyter}{6}{section.3}
+\contentsline {subsection}{\numberline {3.1}Editing the Configuration File}{6}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Running a RCNV\_seq\sphinxhyphen {}template Jupyter Notebook}{7}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Import Necessary Libraries and Functions}{8}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Configuration File Path Definition}{8}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.3}Plot Allele Frequencies}{8}{subsubsection.3.2.3}
+\contentsline {section}{\numberline {4}Example Tutorial \sphinxhyphen {} QTL\sphinxhyphen {}BSA Analysis of Sorghum}{9}{section.4}
+\contentsline {subsection}{\numberline {4.1}Data Download}{9}{subsection.4.1}
+\contentsline {subsubsection}{\numberline {4.1.1}Linux Terminal}{9}{subsubsection.4.1.1}
+\contentsline {subsubsection}{\numberline {4.1.2}Web\sphinxhyphen {}Browser}{10}{subsubsection.4.1.2}
+\contentsline {subsection}{\numberline {4.2}General Installations}{10}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Github Repository Cloning}{10}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Virtual Environment Creation}{11}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}Configuration File Editing}{11}{subsection.4.5}
+\contentsline {subsection}{\numberline {4.6}Jupyter Notebook Analysis}{12}{subsection.4.6}
+\contentsline {section}{\numberline {5}References}{18}{section.5}

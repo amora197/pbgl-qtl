@@ -66,15 +66,14 @@
 % Set up styles of URL: it should be placed after hyperref.
 \urlstyle{same}
 
-\addto\captionsenglish{\renewcommand{\contentsname}{Contents:}}
 
 \usepackage{sphinxmessages}
-\setcounter{tocdepth}{2}
-
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
 
 
 \title{pbgl\sphinxhyphen{}qtl\sphinxhyphen{}bsa}
-\date{Jun 15, 2021}
+\date{Jun 22, 2021}
 \release{1.0.0}
 \author{Anibal Morales, Anza Ghaffar, Norman Warthmann, IAEA PBGL \sphinxhyphen{} UN FAO}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -89,9 +88,13 @@
             \vspace*{10mm} %%% * is used to give space from top
             \flushright\textbf{\Huge {PBGL QTL-BSA Analysis v1.0\\}}
             \vspace{0mm} %%% * is used to give space from top
-            \textbf{\Large {A Laboratory Manual\\}}
+            \textbf{\Large {A Training Tutorial\\}}
+            \vspace{0mm} %%% * is used to give space from top
+            \textbf{\Large {[DRAFT]\\}}
             \vspace{50mm}
             \textbf{\Large {Anibal E. Morales-Zambrana\\}}
+            \vspace{00mm}
+            \textbf{\Large {Norman Warthmann\\}}
             \vspace{10mm}
             \textbf{\Large {Plant Breeding and Genetics Laboratory\\}}
             \vspace{0mm}
@@ -101,7 +104,7 @@
 	    \vspace{10mm}
             \normalsize Created: June, 2021\\
             \vspace*{0mm}
-            \normalsize  Last updated: 15 June 2021
+            \normalsize  Last updated: 21 June 2021
             %% \vfill adds at the bottom
             \vfill
             \small\flushleft {{\textbf {Please note:}} \textit {This is not an official IAEA publication but is made available as working material. The material has not undergone an official review by the IAEA. The views
@@ -117,19 +120,897 @@ expressed do not necessarily reflect those of the International Atomic Energy Ag
 
 
 
-\section{Indices and tables}
-\label{\detokenize{index:indices-and-tables}}\begin{itemize}
+\section{Background}
+\label{\detokenize{index:background}}
+\sphinxAtStartPar
+Quantitative trai locus \sphinxhyphen{} bulk segregant analysis (QTL\sphinxhyphen{}BSA) using allele frequencies, bcftools, Python, Jupyter Notebooks, Miniconda3, Mamba, and Git.
+
+\sphinxAtStartPar
+All the commands run in a Linux terminal are preceded by the \sphinxtitleref{\$} prompt sign. To run a command, copy/past the command without the \sphinxtitleref{\$} sign. Those commands run in a Jupyter Notebook are preceded by the \sphinxtitleref{In {[} {]}:}
+
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
+This is not an official IAEA publication but is made available as working material. The material has not undergone an official review by the IAEA. The views expressed do not necessarily reflect those of the International Atomic Energy Agency or its Member States and remain the responsibility of the contributors. The use of particular designations of countries or territories does not imply any judgement by the publisher, the IAEA, as to the legal status of such countries or territories, of their authorities and institutions or of the delimitation of their boundaries. The mention of names of specific companies or products (whether or not indicated as registered) does not imply any intention to infringe proprietary rights, nor should it be construed as an endorsement or recommendation on the part of the IAEA.
+\end{sphinxadmonition}
+
+
+\section{Installations \sphinxhyphen{} Virtual Environments and Software Packages}
+\label{\detokenize{index:installations-virtual-environments-and-software-packages}}
+\sphinxAtStartPar
+Before installing any necessary software, it is recommended to check if the computer is running 32\sphinxhyphen{}bit or 64\sphinxhyphen{}bit for downloading Miniconda3. Run the following to verify the system:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdl{} uname \PYGZhy{}m
+\end{sphinxVerbatim}
+
+
+\subsection{Miniconda3 (conda) and Mamba}
+\label{\detokenize{index:miniconda3-conda-and-mamba}}
+\sphinxAtStartPar
+Download the Miniconda3, or simply “conda”, installer:
+\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-\DUrole{xref,std,std-ref}{genindex}
+\sphinxhref{https://docs.conda.io/en/latest/miniconda.html\#linux-installers}{Miniconda3 installer for Linux}
+
+\end{itemize}
+
+\sphinxAtStartPar
+Run the downloaded installer (for a 64\sphinxhyphen{}bit system):
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdl{} bash Miniconda3\PYGZhy{}latest\PYGZhy{}Linux\PYGZhy{}x86\PYGZus{}64.sh
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Open a new terminal window for conda to take effect. The word \sphinxtitleref{(base)} should appear in front of the computer name in the terminal window, like so:
+
+\begin{figure}[htbp]
+\centering
+
+\noindent\sphinxincludegraphics{{terminal_base_env}.png}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+
+\noindent\sphinxincludegraphics{{terminal_base_env_detail}.png}
+\end{figure}
+
+\sphinxAtStartPar
+Verify the installation and update conda in new terminal window with:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdl{} conda env list
+\PYGZdl{} conda update \PYGZhy{}\PYGZhy{}all
+\PYGZdl{} conda upgrade \PYGZhy{}\PYGZhy{}all
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Install mamba library/package manager that will be used for installing software dependencies of the tool:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdl{} conda install mamba \PYGZhy{}\PYGZhy{}yes
+\end{sphinxVerbatim}
+
+
+\subsection{Git Installation and Repo Cloning}
+\label{\detokenize{index:git-installation-and-repo-cloning}}
+\sphinxAtStartPar
+Git is required for cloning locally (downloading a copy to your local computer) the PBGL QTL\sphinxhyphen{}BSA Github repository. Git and Github are used for version control of software. It keeps track of development, releases, and issues of a software project.
+
+\sphinxAtStartPar
+Install \sphinxstylestrong{git} for cloning the \sphinxstylestrong{pbgl\sphinxhyphen{}qtl\sphinxhyphen{}bsa} software repository from Github, where the latetest version of the tool resides:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdl{} mamba install git \PYGZhy{}\PYGZhy{}yes
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+After the instalation, clone PBGL’s QTL\sphinxhyphen{}BSA repository, \sphinxstylestrong{pbgl\sphinxhyphen{}qtl\sphinxhyphen{}bsa}, to the local computer in any desired directory.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdl{} git clone https://github.com/pbgl/pbgl\PYGZhy{}qtl\PYGZhy{}bsa.git
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+The cloning process will depict the following:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{Cloning} \PYG{n}{into} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{pbgl\PYGZhy{}qtl\PYGZhy{}bsa}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{o}{.}\PYG{o}{.}
+\PYG{n}{remote}\PYG{p}{:} \PYG{n}{Enumerating} \PYG{n}{objects}\PYG{p}{:} \PYG{l+m+mi}{139}\PYG{p}{,} \PYG{n}{done}\PYG{o}{.}
+\PYG{n}{remote}\PYG{p}{:} \PYG{n}{Counting} \PYG{n}{objects}\PYG{p}{:} \PYG{l+m+mi}{100}\PYG{o}{\PYGZpc{}} \PYG{p}{(}\PYG{l+m+mi}{139}\PYG{o}{/}\PYG{l+m+mi}{139}\PYG{p}{)}\PYG{p}{,} \PYG{n}{done}\PYG{o}{.}
+\PYG{n}{remote}\PYG{p}{:} \PYG{n}{Compressing} \PYG{n}{objects}\PYG{p}{:} \PYG{l+m+mi}{100}\PYG{o}{\PYGZpc{}} \PYG{p}{(}\PYG{l+m+mi}{116}\PYG{o}{/}\PYG{l+m+mi}{116}\PYG{p}{)}\PYG{p}{,} \PYG{n}{done}\PYG{o}{.}
+\PYG{n}{remote}\PYG{p}{:} \PYG{n}{Total} \PYG{l+m+mi}{139} \PYG{p}{(}\PYG{n}{delta} \PYG{l+m+mi}{21}\PYG{p}{)}\PYG{p}{,} \PYG{n}{reused} \PYG{l+m+mi}{129} \PYG{p}{(}\PYG{n}{delta} \PYG{l+m+mi}{16}\PYG{p}{)}\PYG{p}{,} \PYG{n}{pack}\PYG{o}{\PYGZhy{}}\PYG{n}{reused} \PYG{l+m+mi}{0}
+\PYG{n}{Receiving} \PYG{n}{objects}\PYG{p}{:} \PYG{l+m+mi}{100}\PYG{o}{\PYGZpc{}} \PYG{p}{(}\PYG{l+m+mi}{139}\PYG{o}{/}\PYG{l+m+mi}{139}\PYG{p}{)}\PYG{p}{,} \PYG{l+m+mf}{6.90} \PYG{n}{MiB} \PYG{o}{|} \PYG{l+m+mf}{298.00} \PYG{n}{KiB}\PYG{o}{/}\PYG{n}{s}\PYG{p}{,} \PYG{n}{done}\PYG{o}{.}
+\PYG{n}{Resolving} \PYG{n}{deltas}\PYG{p}{:} \PYG{l+m+mi}{100}\PYG{o}{\PYGZpc{}} \PYG{p}{(}\PYG{l+m+mi}{21}\PYG{o}{/}\PYG{l+m+mi}{21}\PYG{p}{)}\PYG{p}{,} \PYG{n}{done}\PYG{o}{.}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+The \sphinxstylestrong{pbgl\sphinxhyphen{}qtl\sphinxhyphen{}bsa} repository should have been cloned successfully. Verify that the download is complete by listing the folders/files in the directory.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdl{} ls \PYGZhy{}l
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+The folder called \sphinxstylestrong{pbgl\sphinxhyphen{}qtl\sphinxhyphen{}bsa} should be listed in the directory.
+
+
+\subsection{Required Libraries with Mamba}
+\label{\detokenize{index:required-libraries-with-mamba}}
+\sphinxAtStartPar
+QTL\sphinxhyphen{}BSA has multiple dependencies, listed below:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Bcftools
 
 \item {} 
 \sphinxAtStartPar
-\DUrole{xref,std,std-ref}{modindex}
+Python
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+pandas
 
 \item {} 
 \sphinxAtStartPar
-\DUrole{xref,std,std-ref}{search}
+matplotlib
+
+\item {} 
+\sphinxAtStartPar
+scikit\sphinxhyphen{}allel
+
+\item {} 
+\sphinxAtStartPar
+seaborn
+
+\item {} 
+\sphinxAtStartPar
+natsort
+
+\end{itemize}
+
+\item {} 
+\sphinxAtStartPar
+Jupyter Notebook
+
+\end{itemize}
+
+\sphinxAtStartPar
+There are two ways to create the \sphinxstylestrong{qtl\sphinxhyphen{}bsa} virtual environment and install the necessary libraries to run QTL\sphinxhyphen{}BSA: automatically or manually.
+
+
+\subsubsection{Automatically (faster)}
+\label{\detokenize{index:automatically-faster}}
+\sphinxAtStartPar
+One YAML file, \sphinxstylestrong{environment.yml}, is provided to automatically create a virtual environment and install the dependent libraries through mamba. The file creates the \sphinxstylestrong{qtl\sphinxhyphen{}bsa} virtual environment, along Jupyter Notebook, and the Python libraries. Run the \sphinxstylestrong{environment.yml}:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdl{} mamba env create \PYGZhy{}\PYGZhy{}file envs/environment.yml
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Once done, a list of the virtual environments available can be seen by running:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdl{} conda env list
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Activate (enter) the recently\sphinxhyphen{}created virtual environment \sphinxstylestrong{qtl\sphinxhyphen{}bsa}:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdl{} conda activate qtl\PYGZhy{}bsa
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Once done, the virtual environment should be activated and all the necessary packages should be installed. This can be verified with:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdl{} conda list
+\end{sphinxVerbatim}
+
+
+\subsubsection{Manually (slower)}
+\label{\detokenize{index:manually-slower}}
+\sphinxAtStartPar
+To manually create and activate an environment, run:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdl{} conda create \PYGZhy{}\PYGZhy{}name qtl\PYGZhy{}bsa
+\PYGZdl{} conda activate qtl\PYGZhy{}bsa
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Start running the installations of the necessary libraries:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdl{} mamba install python=3.6.7 notebook natsort bcftools pandas matplotlib seaborn scikit\PYGZhy{}allel \PYGZhy{}\PYGZhy{}yes
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Once done, all the necessary packages should be installed. This can be verified with:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdl{} conda list
+\end{sphinxVerbatim}
+
+
+\section{Running Jupyter}
+\label{\detokenize{index:running-jupyter}}
+\sphinxAtStartPar
+To activate Jupyter, run the following in the terminal:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdl{} jupyter notebook
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+This command will start a Jupyter session inside the directory the command is run. The user can navigate between directories, visualize files, and edit files in a web browser by clicking on directories or files, respectively.
+
+\sphinxAtStartPar
+Look for the directory \sphinxstylestrong{pbgl\sphinxhyphen{}qtl\sphinxhyphen{}bsa} and click on it. Click on \sphinxstylestrong{tool} directory, which contains three directories and two Jupyter Notebooks. Here is a breakdown of each:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxtitleref{Allele\_Frequency\_Plots\_Computomics}:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+directory that will contain both tab\sphinxhyphen{}files and images output after running a QTL\sphinxhyphen{}BSA analysis
+
+\end{itemize}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxtitleref{config}:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+directory containing configuration files specifying file paths, parameter definitions, list of samples, and list of chromosomes
+
+\end{itemize}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxtitleref{scripts}:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+directory containing Python scripts with functions for plotting allele frequencies
+
+\end{itemize}
+
+\item {} 
+\sphinxAtStartPar
+two Jupyter Notebooks:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+QTL\sphinxhyphen{}BSA\sphinxhyphen{}sorghum\sphinxhyphen{}example.ipynb
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+example analysis of a comparison between a control and mutant of sorghum
+
+\end{itemize}
+
+\item {} 
+\sphinxAtStartPar
+QTL\sphinxhyphen{}BSA.ipynb
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+template for the user
+
+\end{itemize}
+
+\end{itemize}
+
+\end{itemize}
+
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
+Jupyter lets the user duplicate, rename, move, download, view, or edit files in a web browser. This can be done by clicking the box next to a file and choosing accordingly.
+\end{sphinxadmonition}
+
+
+\subsection{Editing the Configuration File}
+\label{\detokenize{index:editing-the-configuration-file}}
+\sphinxAtStartPar
+In order to run the QTL\sphinxhyphen{}BSA Jupyter Notebook, the user needs to feed it with a configuration file (\sphinxstylestrong{config\sphinxhyphen{}allele\sphinxhyphen{}freq.yml}) that specifies the path to the vcf file, list of samples, chromosomes to analyze, and window/step size definitions for calculating and plotting allele frequencies.
+
+\sphinxAtStartPar
+The configuration file \sphinxstylestrong{config\sphinxhyphen{}allele\sphinxhyphen{}freq.yml} can be found in the \sphinxstylestrong{pbgl\sphinxhyphen{}qtl\sphinxhyphen{}bsa/tool/config} directory. The configuration file contains the following fields:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} VCF File information (unzipped .vcf)}
+\PYG{n}{vcf\PYGZus{}file}\PYG{p}{:}
+  \PYG{n}{path}\PYG{p}{:}
+  \PYG{n}{name}\PYG{p}{:}
+  \PYG{n}{extension}\PYG{p}{:}
+
+\PYG{c+c1}{\PYGZsh{} parameters to plot allele frequencies}
+\PYG{n}{window\PYGZus{}size}\PYG{p}{:}
+\PYG{n}{step\PYGZus{}size}\PYG{p}{:}
+
+\PYG{c+c1}{\PYGZsh{} list of samples}
+\PYG{n}{samples}\PYG{p}{:}
+  \PYG{n}{control}\PYG{p}{:}
+  \PYG{n}{mutant}\PYG{p}{:}
+  \PYG{n}{F2\PYGZus{}wild\PYGZus{}type}\PYG{p}{:}
+  \PYG{n}{F2\PYGZus{}mutant}\PYG{p}{:}
+
+\PYG{c+c1}{\PYGZsh{} chromosomes to analyze}
+\PYG{n}{chromosomes}\PYG{p}{:}
+  \PYG{o}{\PYGZhy{}}
+\end{sphinxVerbatim}
+
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
+The user needs to edit \sphinxstylestrong{config\sphinxhyphen{}allele\sphinxhyphen{}freq.yml} to point towards a vcf file; specify chromosomes to analyze; and define the parameters to plot allele frequencies. The paths specified in this tutorial manual may not match the paths of the user’s computer.
+\end{sphinxadmonition}
+
+\sphinxAtStartPar
+One example configuration files is provided (\sphinxstylestrong{config\sphinxhyphen{}allele\sphinxhyphen{}freq\sphinxhyphen{}sorghum\sphinxhyphen{}example.yml}). The configuration file \sphinxstylestrong{config\sphinxhyphen{}allele\sphinxhyphen{}freq.yml} contains multiple fields to be defined by the user.
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxtitleref{vcf\_file}:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxtitleref{path} \sphinxhyphen{} path to directory containing the vcf file
+
+\item {} 
+\sphinxAtStartPar
+\sphinxtitleref{name} \sphinxhyphen{} name of the vcf file
+
+\item {} 
+\sphinxAtStartPar
+\sphinxtitleref{extension} \sphinxhyphen{} type of file; only handles \sphinxstylestrong{.vcf} files at the moment
+
+\end{itemize}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxtitleref{window\_size} \sphinxhyphen{} integer specifying the window size to allele frequencies
+
+\item {} 
+\sphinxAtStartPar
+\sphinxtitleref{step\_size} \sphinxhyphen{} integer specifying the step size of the sliding window
+
+\item {} 
+\sphinxAtStartPar
+\sphinxtitleref{samples}:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxtitleref{control} \sphinxhyphen{} control parent
+
+\item {} 
+\sphinxAtStartPar
+\sphinxtitleref{mutant} \sphinxhyphen{} mutant parent
+
+\item {} 
+\sphinxAtStartPar
+\sphinxtitleref{F2\_wild\_type} \sphinxhyphen{} F2 organism showing wild type phenotype
+
+\item {} 
+\sphinxAtStartPar
+\sphinxtitleref{F2\_mutant} \sphinxhyphen{} F2 organism showing mutant phenotype
+
+\end{itemize}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxtitleref{chromosomes} \sphinxhyphen{} list of chromosomes to analyze
+
+\end{itemize}
+
+
+\subsection{Running a RCNV\_seq\sphinxhyphen{}template Jupyter Notebook}
+\label{\detokenize{index:running-a-rcnv-seq-template-jupyter-notebook}}
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
+It is recommended to duplicate the \sphinxstylestrong{QTL\sphinxhyphen{}BSA.ipynb} notebook and then renaming the copy before doing any edits to the notebook.
+\end{sphinxadmonition}
+
+\sphinxAtStartPar
+In the \sphinxstylestrong{pbgl\sphinxhyphen{}qtl\sphinxhyphen{}bsa/tool} directory, click on \sphinxstylestrong{QTL\sphinxhyphen{}BSA.ipynb} and a new tab in your web\sphinxhyphen{}browser will open the notebook.
+
+\sphinxAtStartPar
+The notebook contains cells that are populated by text or code. Instructions are provided in the notebook to guide the user. To run a cell, click on the corresponding cell and click on the \sphinxtitleref{Run} button on the top of the notebook. Another way to run a cell can be done by clicking on the corresponding cell and pressing \sphinxstylestrong{Ctrl + Enter} or \sphinxstylestrong{Shift + Enter}.
+
+\sphinxAtStartPar
+The notebook consists of 3 sections:
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {} 
+\sphinxAtStartPar
+Import Necessary Libraries and Functions
+
+\item {} 
+\sphinxAtStartPar
+Configuration File Path Definition
+
+\item {} 
+\sphinxAtStartPar
+Plot Allele Frequencies
+
+\end{enumerate}
+
+\sphinxAtStartPar
+The third section \sphinxstylestrong{Plot Allele Frequencies} has 3 subsections:
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {} 
+\sphinxAtStartPar
+Unweighted Window Sizes
+
+\item {} 
+\sphinxAtStartPar
+Weighted Window Sizes from Configuration File
+
+\item {} 
+\sphinxAtStartPar
+Weighted Window Sizes Defined in Jupyter Notebook
+
+\end{enumerate}
+
+
+\subsubsection{Import Necessary Libraries and Functions}
+\label{\detokenize{index:import-necessary-libraries-and-functions}}
+\sphinxAtStartPar
+Imports the functions needed to plot the allele frequencies. All the libraries are imported from \sphinxstylestrong{pbgl\sphinxhyphen{}qtl\sphinxhyphen{}bsa/tool/scripts} directory.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{In} \PYG{p}{[} \PYG{p}{]}\PYG{p}{:} \PYG{k+kn}{from} \PYG{n+nn}{scripts}\PYG{n+nn}{.}\PYG{n+nn}{plot\PYGZus{}allele\PYGZus{}freqs} \PYG{k+kn}{import} \PYG{o}{*}
+\end{sphinxVerbatim}
+
+
+\subsubsection{Configuration File Path Definition}
+\label{\detokenize{index:configuration-file-path-definition}}
+\sphinxAtStartPar
+Defines the path and name of the configuration path. Configuration files can be found in the \sphinxstylestrong{pbgl\sphinxhyphen{}qtl\sphinxhyphen{}bsa/tool/config} directory.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{In} \PYG{p}{[} \PYG{p}{]}\PYG{p}{:} \PYG{n}{config} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{config/config\PYGZhy{}allele\PYGZhy{}freq.yml}\PYG{l+s+s2}{\PYGZdq{}}
+\end{sphinxVerbatim}
+
+
+\subsubsection{Plot Allele Frequencies}
+\label{\detokenize{index:plot-allele-frequencies}}
+\sphinxAtStartPar
+Contains three functions to plot the allele frequencies by extracting information from the configuration file defined previously. These are:
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {} 
+\sphinxAtStartPar
+Plotting Unweighted Window Sizes
+
+\end{enumerate}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{In} \PYG{p}{[} \PYG{p}{]}\PYG{p}{:} \PYG{n}{plot\PYGZus{}allele\PYGZus{}frequencies\PYGZus{}raw}\PYG{p}{(}\PYG{n}{config}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+This function will plot the allele frequencies of an F2 mutant against the F2 wild\sphinxhyphen{}type. It does not take into consideration neither the window size nor the step size. The function has no additional parameters.
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\setcounter{enumi}{1}
+\item {} 
+\sphinxAtStartPar
+Plotting Weighted Window Sizes from Configuration File
+
+\end{enumerate}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{In} \PYG{p}{[} \PYG{p}{]}\PYG{p}{:} \PYG{n}{plot\PYGZus{}allele\PYGZus{}frequencies\PYGZus{}weighted}\PYG{p}{(}\PYG{n}{config}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+This function will plot the allele frequencies of an F2 mutant against the F2 wild type. It takes into consideration both the window size and step size.
+
+\sphinxAtStartPar
+Running the function as shown will use the values defined in \sphinxtitleref{window\_size} and \sphinxtitleref{step\_size} inside the configuration file used.
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\setcounter{enumi}{2}
+\item {} 
+\sphinxAtStartPar
+Plotting Weighted Window Sizes from Jupyter Notebook
+
+\end{enumerate}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{In} \PYG{p}{[} \PYG{p}{]}\PYG{p}{:} \PYG{n}{plot\PYGZus{}allele\PYGZus{}frequencies\PYGZus{}weighted}\PYG{p}{(}\PYG{n}{config}\PYG{p}{,} \PYG{n}{window\PYGZus{}size}\PYG{o}{=} \PYG{p}{,} \PYG{n}{step\PYGZus{}size}\PYG{o}{=} \PYG{p}{)}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+This function provides the user to edit the \sphinxtitleref{window\_size} and \sphinxtitleref{step\_size} parameters in\sphinxhyphen{}place in the Jupyter Notebook without having to go back and edit the configuration file. If the parameters \sphinxtitleref{window\_size} and \sphinxtitleref{step\_size} are empty, the function will extract these parameter values from the configuration file.
+
+
+\section{Example Tutorial \sphinxhyphen{} QTL\sphinxhyphen{}BSA Analysis of Sorghum}
+\label{\detokenize{index:example-tutorial-qtl-bsa-analysis-of-sorghum}}
+\sphinxAtStartPar
+In this section of the manual, an example analysis of sorghum will be shown in a step\sphinxhyphen{}by\sphinxhyphen{}step process. The data has been filtered to show variant locations where the control has genotype ‘0/0’ and the mutant has genotype ‘1/1’. The QTL\sphinxhyphen{}BSA analysis will depict an artifact on chromosome Chr04.
+
+\sphinxAtStartPar
+The tutorial is divided between the following sections:
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {} 
+\sphinxAtStartPar
+Data Download
+
+\item {} 
+\sphinxAtStartPar
+General Installations
+
+\item {} 
+\sphinxAtStartPar
+Github Repository Cloning
+
+\item {} 
+\sphinxAtStartPar
+Virtual Environment Creation
+
+\item {} 
+\sphinxAtStartPar
+Configuration File Editing
+
+\item {} 
+\sphinxAtStartPar
+Jupyter Notebook Analysis
+
+\end{enumerate}
+
+
+\subsection{Data Download}
+\label{\detokenize{index:data-download}}
+\sphinxAtStartPar
+Running this tutorial requires one variant call format (VCF) file of sorghum crop: \sphinxstylestrong{freebayes\_D2.filtered.vcf}. It is used in genetics for storing variations of gene sequences.
+
+\sphinxAtStartPar
+The following links can be used to download the necessary VCF file and its correspondig indexed \sphinxstylestrong{.tbi} file:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+freebayes\_D2.filtered.vcf
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxurl{https://bss1innov1nafa1poc1.blob.core.windows.net/sample-container/2021\_Training/freebayes\_D2.filtered.vcf}
+
+\end{itemize}
+
+\item {} 
+\sphinxAtStartPar
+freebayes\_D2.filtered.vcf.gz.tbi
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxurl{https://bss1innov1nafa1poc1.blob.core.windows.net/sample-container/2021\_Training/freebayes\_D2.filtered.vcf.gz.tbi}
+
+\end{itemize}
+
+\end{itemize}
+
+\sphinxAtStartPar
+There are two additional ways to download the \sphinxstylestrong{.vcf} file and its respective index, besides clicking the links above:
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {} 
+\sphinxAtStartPar
+Linux terminal
+
+\item {} 
+\sphinxAtStartPar
+Web\sphinxhyphen{}Browser
+
+\end{enumerate}
+
+
+\subsubsection{Linux Terminal}
+\label{\detokenize{index:linux-terminal}}
+\sphinxAtStartPar
+Open a new terminal and navigate to a directory of choice. We recommend creating a directory to store the data and running \sphinxtitleref{wget} in the respective location:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdl{} mkdir vcf\PYGZus{}files
+\PYGZdl{} cd vcf\PYGZus{}files
+\PYGZdl{} wget https://bss1innov1nafa1poc1.blob.core.windows.net/sample\PYGZhy{}container/2021\PYGZus{}Training/freebayes\PYGZus{}D2.filtered.vcf
+\PYGZdl{} wget https://bss1innov1nafa1poc1.blob.core.windows.net/sample\PYGZhy{}container/2021\PYGZus{}Training/freebayes\PYGZus{}D2.filtered.vcf.gz.tbi
+\end{sphinxVerbatim}
+
+
+\subsubsection{Web\sphinxhyphen{}Browser}
+\label{\detokenize{index:web-browser}}
+\sphinxAtStartPar
+Open a web\sphinxhyphen{}browser of preference. Copy/paste the links provided above in the address bar. This should automatically begin the download. Move the downloaded files to a location of personal preference.
+
+
+\subsection{General Installations}
+\label{\detokenize{index:general-installations}}
+\sphinxAtStartPar
+Open a web browser and copy/paste the following link to download Miniconda3:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxurl{https://docs.conda.io/en/latest/miniconda.html\#linux-installers}
+
+\end{itemize}
+
+\sphinxAtStartPar
+After download, open a new terminal window, navigate to the directory with the downloaded Miniconda3 installer, and run the installation.
+
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
+The donwloaded Miniconda3 installer file might not match the one run in this example. Please, type the corresponding name of the \sphinxstylestrong{.sh} file downloaded.
+\end{sphinxadmonition}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdl{} bash Miniconda3\PYGZhy{}latest\PYGZhy{}Linux\PYGZhy{}x86\PYGZus{}64.sh
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Once the Miniconda3 installation is done, close the terminal and open a new one. The word \sphinxtitleref{(base)} should be present to the left of the computer name in the prompt. Update conda and install mamba.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdl{} conda update \PYGZhy{}\PYGZhy{}all \PYGZhy{}\PYGZhy{}yes
+\PYGZdl{} conda upgrade \PYGZhy{}\PYGZhy{}all \PYGZhy{}\PYGZhy{}yes
+\PYGZdl{} conda install mamba \PYGZhy{}\PYGZhy{}yes
+\end{sphinxVerbatim}
+
+
+\subsection{Github Repository Cloning}
+\label{\detokenize{index:github-repository-cloning}}
+\sphinxAtStartPar
+Git or Github is used for storage and version control of software projects. Git is used to manage in a local Linux terminal. First, git will need to be installed. In a new terminal window, run the installation command:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdl{} mamba install git \PYGZhy{}\PYGZhy{}yes
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+After installing git, create a location to store Github repoitories, navigate into it, and clone (download a copy locally) of PBGL’s \sphinxstylestrong{pbgl\sphinxhyphen{}qtl\sphinxhyphen{}bsa} repository.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdl{} mkdir Github
+\PYGZdl{} cd Github
+\PYGZdl{} git clone https://github.com/pbgl/pbgl\PYGZhy{}qtl\PYGZhy{}bsa.git
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+A successful cloning will output the following:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{Cloning} \PYG{n}{into} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{pbgl\PYGZhy{}qtl\PYGZhy{}bsa}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{o}{.}\PYG{o}{.}
+\PYG{n}{remote}\PYG{p}{:} \PYG{n}{Enumerating} \PYG{n}{objects}\PYG{p}{:} \PYG{l+m+mi}{139}\PYG{p}{,} \PYG{n}{done}\PYG{o}{.}
+\PYG{n}{remote}\PYG{p}{:} \PYG{n}{Counting} \PYG{n}{objects}\PYG{p}{:} \PYG{l+m+mi}{100}\PYG{o}{\PYGZpc{}} \PYG{p}{(}\PYG{l+m+mi}{139}\PYG{o}{/}\PYG{l+m+mi}{139}\PYG{p}{)}\PYG{p}{,} \PYG{n}{done}\PYG{o}{.}
+\PYG{n}{remote}\PYG{p}{:} \PYG{n}{Compressing} \PYG{n}{objects}\PYG{p}{:} \PYG{l+m+mi}{100}\PYG{o}{\PYGZpc{}} \PYG{p}{(}\PYG{l+m+mi}{116}\PYG{o}{/}\PYG{l+m+mi}{116}\PYG{p}{)}\PYG{p}{,} \PYG{n}{done}\PYG{o}{.}
+\PYG{n}{remote}\PYG{p}{:} \PYG{n}{Total} \PYG{l+m+mi}{139} \PYG{p}{(}\PYG{n}{delta} \PYG{l+m+mi}{21}\PYG{p}{)}\PYG{p}{,} \PYG{n}{reused} \PYG{l+m+mi}{129} \PYG{p}{(}\PYG{n}{delta} \PYG{l+m+mi}{16}\PYG{p}{)}\PYG{p}{,} \PYG{n}{pack}\PYG{o}{\PYGZhy{}}\PYG{n}{reused} \PYG{l+m+mi}{0}
+\PYG{n}{Receiving} \PYG{n}{objects}\PYG{p}{:} \PYG{l+m+mi}{100}\PYG{o}{\PYGZpc{}} \PYG{p}{(}\PYG{l+m+mi}{139}\PYG{o}{/}\PYG{l+m+mi}{139}\PYG{p}{)}\PYG{p}{,} \PYG{l+m+mf}{6.90} \PYG{n}{MiB} \PYG{o}{|} \PYG{l+m+mf}{298.00} \PYG{n}{KiB}\PYG{o}{/}\PYG{n}{s}\PYG{p}{,} \PYG{n}{done}\PYG{o}{.}
+\PYG{n}{Resolving} \PYG{n}{deltas}\PYG{p}{:} \PYG{l+m+mi}{100}\PYG{o}{\PYGZpc{}} \PYG{p}{(}\PYG{l+m+mi}{21}\PYG{o}{/}\PYG{l+m+mi}{21}\PYG{p}{)}\PYG{p}{,} \PYG{n}{done}\PYG{o}{.}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Navigate into the cloned repository,
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdl{} cd pbgl\PYGZhy{}qtl\PYGZhy{}bsa
+\end{sphinxVerbatim}
+
+
+\subsection{Virtual Environment Creation}
+\label{\detokenize{index:virtual-environment-creation}}
+\sphinxAtStartPar
+Once inside the \sphinxstylestrong{pbgl\sphinxhyphen{}qtl\sphinxhyphen{}bsa} directory, create the \sphinxstylestrong{qtl\sphinxhyphen{}bsa} virtual environment, install the necessary libraries, and activate the newly created \sphinxstylestrong{qtl\sphinxhyphen{}bsa} virtual environment.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdl{} mamba env create \PYGZhy{}\PYGZhy{}file envs/environment.yml
+\PYGZdl{} conda activate qtl\PYGZhy{}bsa
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+The name \sphinxtitleref{(qtl\sphinxhyphen{}bsa)} environment should be reflected to the left of the computer name in the terminal command prompt.
+
+
+\subsection{Configuration File Editing}
+\label{\detokenize{index:configuration-file-editing}}
+\sphinxAtStartPar
+Open a Jupyter session by running,
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdl{} jupyter notebook
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Navigate to \sphinxstylestrong{pbgl\sphinxhyphen{}qtl\sphinxhyphen{}bsa/tool/config} and click on \sphinxstylestrong{config\sphinxhyphen{}allele\sphinxhyphen{}freq\sphinxhyphen{}sorghum\sphinxhyphen{}example.yml}. This will open the configuration file in a new web\sphinxhyphen{}browser tab. Copy/paste the following in the configuration file.
+
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
+The \sphinxtitleref{path} to the vcf file will not match. It needs to be edited accordingly to point towards the location of the vcf file stored locally in the user’s computer.
+\end{sphinxadmonition}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{vcf\PYGZus{}file}\PYG{p}{:}
+  \PYG{n}{path}\PYG{p}{:} \PYG{o}{/}\PYG{n}{home}\PYG{o}{/}\PYG{n}{anibal}\PYG{o}{/}\PYG{n}{vcf\PYGZus{}files}
+  \PYG{n}{name}\PYG{p}{:} \PYG{n}{freebayes\PYGZus{}D2}\PYG{o}{.}\PYG{n}{filtered}
+  \PYG{n}{extension}\PYG{p}{:} \PYG{n}{vcf}
+
+\PYG{n}{window\PYGZus{}size}\PYG{p}{:} \PYG{l+m+mi}{500000}
+\PYG{n}{step\PYGZus{}size}\PYG{p}{:} \PYG{l+m+mi}{100000}
+
+\PYG{n}{samples}\PYG{p}{:}
+  \PYG{n}{control}\PYG{p}{:} \PYG{n}{con}\PYG{o}{\PYGZhy{}}\PYG{n+nb}{all}
+  \PYG{n}{mutant}\PYG{p}{:} \PYG{n}{D2}
+  \PYG{n}{F2\PYGZus{}wild\PYGZus{}type}\PYG{p}{:} \PYG{n}{D2\PYGZus{}F2\PYGZus{}TT}
+  \PYG{n}{F2\PYGZus{}mutant}\PYG{p}{:} \PYG{n}{D2\PYGZus{}F2\PYGZus{}tt}
+
+\PYG{n}{chromosomes}\PYG{p}{:}
+  \PYG{o}{\PYGZhy{}} \PYG{n}{Chr01}
+  \PYG{o}{\PYGZhy{}} \PYG{n}{Chr02}
+  \PYG{o}{\PYGZhy{}} \PYG{n}{Chr03}
+  \PYG{o}{\PYGZhy{}} \PYG{n}{Chr04}
+  \PYG{o}{\PYGZhy{}} \PYG{n}{Chr05}
+  \PYG{o}{\PYGZhy{}} \PYG{n}{Chr06}
+  \PYG{o}{\PYGZhy{}} \PYG{n}{Chr07}
+  \PYG{o}{\PYGZhy{}} \PYG{n}{Chr08}
+  \PYG{o}{\PYGZhy{}} \PYG{n}{Chr09}
+  \PYG{o}{\PYGZhy{}} \PYG{n}{Chr10}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Save the file and close the tab.
+
+
+\subsection{Jupyter Notebook Analysis}
+\label{\detokenize{index:jupyter-notebook-analysis}}
+\sphinxAtStartPar
+In the open Jupyter session, navigate to the \sphinxstylestrong{pbgl\sphinxhyphen{}qtl\sphinxhyphen{}bsa/tool} directory and click on the \sphinxstylestrong{QTL\sphinxhyphen{}BSA.ipynb} Jupyter Notebook. Begin by running the \sphinxstylestrong{Import Necessary Libraries and Functions} section. This can be done by clicking on the cell to be run followed by clicking the \sphinxtitleref{Run} button on the top of the Jupyter Notebook. This cell will import the functions defined in the \sphinxstylestrong{pbgl\sphinxhyphen{}qtl\sphinxhyphen{}bsa/tool/scripts}.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{In} \PYG{p}{[} \PYG{p}{]}\PYG{p}{:} \PYG{k+kn}{from} \PYG{n+nn}{scripts}\PYG{n+nn}{.}\PYG{n+nn}{plot\PYGZus{}allele\PYGZus{}freqs} \PYG{k+kn}{import} \PYG{o}{*}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Type the correct name of the configuration file being loaded under the \sphinxstylestrong{Configuration File Path Definitions} section. The configuration file \sphinxstylestrong{config\sphinxhyphen{}allele\sphinxhyphen{}freq\sphinxhyphen{}sorghum\sphinxhyphen{}example.yml} is loaded from the \sphinxstylestrong{pbgl\sphinxhyphen{}qtl\sphinxhyphen{}bsa/tool/config} directory.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{In} \PYG{p}{[} \PYG{p}{]}\PYG{p}{:} \PYG{n}{config} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{config/config\PYGZhy{}allele\PYGZhy{}freq\PYGZhy{}sorghum\PYGZhy{}example.yml}\PYG{l+s+s2}{\PYGZdq{}}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Run the \sphinxstylestrong{Unweighted Window Sizes} subsection under the \sphinxstylestrong{Plot Allele Frequencies} section. This function will plot the allele frequencies without taking into consideration \sphinxtitleref{window\_size} and \sphinxtitleref{step\_size}; the output plot is named \sphinxstylestrong{freebayes\_D2.filtered.pdf} stored in \sphinxstylestrong{pbgl\sphinxhyphen{}qtl\sphinxhyphen{}bsa/tool/Allele\_Frequency\_Plots\_Computomics}.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{In} \PYG{p}{[} \PYG{p}{]}\PYG{p}{:} \PYG{n}{plot\PYGZus{}allele\PYGZus{}frequencies\PYGZus{}raw}\PYG{p}{(}\PYG{n}{config}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics{{allele-freq-raw}.png}
+\caption{Allele frequency plot with unweighted window and step sizes}\label{\detokenize{index:id1}}\end{figure}
+
+\sphinxAtStartPar
+This function will also create a tabulated \sphinxstylestrong{.tsv} file named \sphinxstylestrong{freebayes\_D2.filtered.tsv} stored in \sphinxstylestrong{pbgl\sphinxhyphen{}qtl\sphinxhyphen{}bsa/tool/Allele\_Frequency\_Plots\_Computomics}. This file can be exported to any statistical software tool for further analysis. The file contains the following fields:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxtitleref{CHROM} \sphinxhyphen{} chromosome ID
+
+\item {} 
+\sphinxAtStartPar
+\sphinxtitleref{POS} \sphinxhyphen{} position in chromosome in base\sphinxhyphen{}pair
+
+\item {} 
+\sphinxAtStartPar
+\sphinxtitleref{REF} \sphinxhyphen{} reference sequence
+
+\item {} 
+\sphinxAtStartPar
+\sphinxtitleref{ALT} \sphinxhyphen{} alternate sequence
+
+\item {} 
+\sphinxAtStartPar
+\sphinxtitleref{RO} \sphinxhyphen{} reference allele observation count
+
+\item {} 
+\sphinxAtStartPar
+\sphinxtitleref{AO} \sphinxhyphen{} alternate allele observation count
+
+\item {} 
+\sphinxAtStartPar
+\sphinxtitleref{GT} \sphinxhyphen{} genotype
+
+\item {} 
+\sphinxAtStartPar
+\sphinxtitleref{GQ} \sphinxhyphen{} Genotype Quality, the Phred\sphinxhyphen{}scaled marginal (or unconditional) probability of the called genotype
+
+\item {} 
+\sphinxAtStartPar
+\sphinxtitleref{SampleRO} \sphinxhyphen{} wild\sphinxhyphen{}type allele observation count
+
+\item {} 
+\sphinxAtStartPar
+\sphinxtitleref{SampleAO} \sphinxhyphen{} mutant allele observation count
+
+\end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics{{tsv-file}.png}
+\caption{Output tabulated file}\label{\detokenize{index:id2}}\end{figure}
+
+\sphinxAtStartPar
+All output files are stored in the directory \sphinxstylestrong{pbgl\sphinxhyphen{}qtl\sphinxhyphen{}bsa/tool/Allele\_Frequency\_Plots\_Computomics}.
+
+\sphinxAtStartPar
+In order to plot the allele frequencies using the window and step sizes, run the subsection \sphinxstylestrong{Weighted Window Sizes from Configuration File}. The parameters \sphinxtitleref{window\_size} and \sphinxtitleref{step\_size} are extracted from the configuration file.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{In} \PYG{p}{[} \PYG{p}{]}\PYG{p}{:} \PYG{n}{plot\PYGZus{}allele\PYGZus{}frequencies\PYGZus{}weighted}\PYG{p}{(}\PYG{n}{config}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+The plot using \sphinxtitleref{window\_size=500000} and \sphinxtitleref{step\_size=100000} from the configuration file outputs the following figure:
+
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics{{allele-freq-nb}.png}
+\caption{Allele frequency plot with window\_size=500000 and step\_size=100000}\label{\detokenize{index:id3}}\end{figure}
+
+\sphinxAtStartPar
+In order to modify the \sphinxtitleref{window\_size} and \sphinxtitleref{step\_size} parameters in the Jupyter Notebook without the need of remodifying the configuration file, the \sphinxtitleref{plot\_allele\_frequencies\_weighted} function has two parameters that can be defined to create allele frequencies plots with varying window and step sizes.
+
+\sphinxAtStartPar
+Run the \sphinxstylestrong{Weighted Window Sizes Defined in Jupyter Notebook} subsection with bigger window and step sizes.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{In} \PYG{p}{[} \PYG{p}{]}\PYG{p}{:} \PYG{n}{plot\PYGZus{}allele\PYGZus{}frequencies\PYGZus{}weighted}\PYG{p}{(}\PYG{n}{config}\PYG{p}{,} \PYG{n}{window\PYGZus{}size}\PYG{o}{=}\PYG{l+m+mi}{5000000} \PYG{p}{,} \PYG{n}{step\PYGZus{}size}\PYG{o}{=}\PYG{l+m+mi}{1000000} \PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics{{allele-freq-config}.png}
+\caption{Allele frequency plot with window\_size=5000000 and step\_size=1000000}\label{\detokenize{index:id4}}\end{figure}
+
+\sphinxAtStartPar
+This last plot using \sphinxtitleref{window\_size=5000000} and \sphinxtitleref{step\_size=1000000} clearly shows a variant present in Chr04. Knowing where artifacts like this one is located plays a major role in identifying and visualizing variants in an organism. The user can, in turn, use different tools, like the Integrative Genomics Viewer (IGV), for further analysis.
+
+\sphinxAtStartPar
+This culminates the tutorial.
+
+
+\section{References}
+\label{\detokenize{index:references}}
+\sphinxAtStartPar
+\sphinxstylestrong{GitHub repositories}:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxhref{https://github.com/pbgl/pbgl-qtl-bsa}{pbgl/pbgl\sphinxhyphen{}qtl\sphinxhyphen{}bsa}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxhref{https://github.com/amora197/pbgl-qtl-bsa}{amora197/pbgl\sphinxhyphen{}qtl\sphinxhyphen{}bsa}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxhref{https://github.com/AnzaGhaffar/QTL-Snakemake-Workflow}{AnzaGhaffar/QTL\sphinxhyphen{}Snakemake\sphinxhyphen{}Workflow}
 
 \end{itemize}
 

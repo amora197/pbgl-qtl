@@ -43,11 +43,11 @@ Run the downloaded installer (for a 64-bit system):
    
 Open a new terminal window for conda to take effect. The word `(base)` should appear in front of the computer name in the terminal window, like so:
 
-.. figure:: ../images/terminal_base_env.png
+.. figure:: docs/images/terminal_base_env.png
    :alt: terminal-base
    :align: center
    
-.. figure:: ../images/terminal_base_env_detail.png
+.. figure:: docs/images/terminal_base_env_detail.png
    :alt: terminal-base-detail
    :align: center
 
@@ -518,7 +518,7 @@ Run the **Unweighted Window Sizes** subsection under the **Plot Allele Frequenci
 
    In [ ]: plot_allele_frequencies_raw(config)
 
-.. figure:: ../images/allele-freq-raw.png
+.. figure:: docs/images/allele-freq-raw.png
    :alt: allele-freq-raw
    :align: center
    
@@ -537,7 +537,7 @@ This function will also create a tabulated **.tsv** file named **freebayes_D2.fi
 - `SampleRO` - wild-type allele observation count
 - `SampleAO` - mutant allele observation count
 
-.. figure:: ../images/tsv-file.png
+.. figure:: docs/images/tsv-file.png
    :alt: tsv-file
    :align: center
    
@@ -553,7 +553,7 @@ In order to plot the allele frequencies using the window and step sizes, run the
    
 The plot using `window_size=500000` and `step_size=100000` from the configuration file outputs the following figure:
 
-.. figure:: ../images/allele-freq-nb.png
+.. figure:: docs/images/allele-freq-nb.png
    :alt: allele-freq-nb
    :align: center
    
@@ -567,7 +567,7 @@ Run the **Weighted Window Sizes Defined in Jupyter Notebook** subsection with bi
 
    In [ ]: plot_allele_frequencies_weighted(config, window_size=5000000 , step_size=1000000 )
    
-.. figure:: ../images/allele-freq-config.png
+.. figure:: docs/images/allele-freq-config.png
    :alt: allele-freq-config
    :align: center
    

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Welcome to pbgl-qtl-bsa’s documentation! &mdash; pbgl-qtl-bsa 1.0.0 documentation</title>
+  <title>PBGL QTL-BSA Analysis &mdash; pbgl-qtl-bsa 1.0.0 documentation</title>
   
 
   
@@ -84,8 +84,44 @@
             
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Welcome to pbgl-qtl-bsa’s documentation!</a></li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+<li><a class="reference internal" href="#">PBGL QTL-BSA Analysis</a><ul>
+<li><a class="reference internal" href="#background">Background</a></li>
+<li><a class="reference internal" href="#installations-virtual-environments-and-software-packages">Installations - Virtual Environments and Software Packages</a><ul>
+<li><a class="reference internal" href="#miniconda3-conda-and-mamba">Miniconda3 (conda) and Mamba</a></li>
+<li><a class="reference internal" href="#git-installation-and-repo-cloning">Git Installation and Repo Cloning</a></li>
+<li><a class="reference internal" href="#required-libraries-with-mamba">Required Libraries with Mamba</a><ul>
+<li><a class="reference internal" href="#automatically-faster">Automatically (faster)</a></li>
+<li><a class="reference internal" href="#manually-slower">Manually (slower)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#running-jupyter">Running Jupyter</a><ul>
+<li><a class="reference internal" href="#editing-the-configuration-file">Editing the Configuration File</a></li>
+<li><a class="reference internal" href="#running-a-rcnv-seq-template-jupyter-notebook">Running a RCNV_seq-template Jupyter Notebook</a><ul>
+<li><a class="reference internal" href="#import-necessary-libraries-and-functions">Import Necessary Libraries and Functions</a></li>
+<li><a class="reference internal" href="#configuration-file-path-definition">Configuration File Path Definition</a></li>
+<li><a class="reference internal" href="#plot-allele-frequencies">Plot Allele Frequencies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#example-tutorial-qtl-bsa-analysis-of-sorghum">Example Tutorial - QTL-BSA Analysis of Sorghum</a><ul>
+<li><a class="reference internal" href="#data-download">Data Download</a><ul>
+<li><a class="reference internal" href="#linux-terminal">Linux Terminal</a></li>
+<li><a class="reference internal" href="#web-browser">Web-Browser</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#general-installations">General Installations</a></li>
+<li><a class="reference internal" href="#github-repository-cloning">Github Repository Cloning</a></li>
+<li><a class="reference internal" href="#virtual-environment-creation">Virtual Environment Creation</a></li>
+<li><a class="reference internal" href="#configuration-file-editing">Configuration File Editing</a></li>
+<li><a class="reference internal" href="#jupyter-notebook-analysis">Jupyter Notebook Analysis</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
 </ul>
 </div>
             
@@ -134,7 +170,7 @@
     
       <li><a href="#" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Welcome to pbgl-qtl-bsa’s documentation!</li>
+      <li>PBGL QTL-BSA Analysis</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -153,18 +189,505 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="welcome-to-pbgl-qtl-bsa-s-documentation">
-<h1>Welcome to pbgl-qtl-bsa’s documentation!<a class="headerlink" href="#welcome-to-pbgl-qtl-bsa-s-documentation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="pbgl-qtl-bsa-analysis">
+<h1>PBGL QTL-BSA Analysis<a class="headerlink" href="#pbgl-qtl-bsa-analysis" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
+<div class="section" id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p>Quantitative trai locus - bulk segregant analysis (QTL-BSA) using allele frequencies, bcftools, Python, Jupyter Notebooks, Miniconda3, Mamba, and Git.</p>
+<p>All the commands run in a Linux terminal are preceded by the <cite>$</cite> prompt sign. To run a command, copy/past the command without the <cite>$</cite> sign. Those commands run in a Jupyter Notebook are preceded by the <cite>In [ ]:</cite></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is not an official IAEA publication but is made available as working material. The material has not undergone an official review by the IAEA. The views expressed do not necessarily reflect those of the International Atomic Energy Agency or its Member States and remain the responsibility of the contributors. The use of particular designations of countries or territories does not imply any judgement by the publisher, the IAEA, as to the legal status of such countries or territories, of their authorities and institutions or of the delimitation of their boundaries. The mention of names of specific companies or products (whether or not indicated as registered) does not imply any intention to infringe proprietary rights, nor should it be construed as an endorsement or recommendation on the part of the IAEA.</p>
 </div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</div>
+<div class="section" id="installations-virtual-environments-and-software-packages">
+<h2>Installations - Virtual Environments and Software Packages<a class="headerlink" href="#installations-virtual-environments-and-software-packages" title="Permalink to this headline">¶</a></h2>
+<p>Before installing any necessary software, it is recommended to check if the computer is running 32-bit or 64-bit for downloading Miniconda3. Run the following to verify the system:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ uname -m
+</pre></div>
+</div>
+<div class="section" id="miniconda3-conda-and-mamba">
+<h3>Miniconda3 (conda) and Mamba<a class="headerlink" href="#miniconda3-conda-and-mamba" title="Permalink to this headline">¶</a></h3>
+<p>Download the Miniconda3, or simply “conda”, installer:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html#linux-installers">Miniconda3 installer for Linux</a></p></li>
 </ul>
+</div></blockquote>
+<p>Run the downloaded installer (for a 64-bit system):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ bash Miniconda3-latest-Linux-x86_64.sh
+</pre></div>
+</div>
+<p>Open a new terminal window for conda to take effect. The word <cite>(base)</cite> should appear in front of the computer name in the terminal window, like so:</p>
+<div class="figure align-center">
+<img alt="terminal-base" src="_images/terminal_base_env.png" />
+</div>
+<div class="figure align-center">
+<img alt="terminal-base-detail" src="_images/terminal_base_env_detail.png" />
+</div>
+<p>Verify the installation and update conda in new terminal window with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda env list
+$ conda update --all
+$ conda upgrade --all
+</pre></div>
+</div>
+<p>Install mamba library/package manager that will be used for installing software dependencies of the tool:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda install mamba --yes
+</pre></div>
+</div>
+</div>
+<div class="section" id="git-installation-and-repo-cloning">
+<h3>Git Installation and Repo Cloning<a class="headerlink" href="#git-installation-and-repo-cloning" title="Permalink to this headline">¶</a></h3>
+<p>Git is required for cloning locally (downloading a copy to your local computer) the PBGL QTL-BSA Github repository. Git and Github are used for version control of software. It keeps track of development, releases, and issues of a software project.</p>
+<p>Install <strong>git</strong> for cloning the <strong>pbgl-qtl-bsa</strong> software repository from Github, where the latetest version of the tool resides:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mamba install git --yes
+</pre></div>
+</div>
+<p>After the instalation, clone PBGL’s QTL-BSA repository, <strong>pbgl-qtl-bsa</strong>, to the local computer in any desired directory.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/pbgl/pbgl-qtl-bsa.git
+</pre></div>
+</div>
+<p>The cloning process will depict the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Cloning</span> <span class="n">into</span> <span class="s1">&#39;pbgl-qtl-bsa&#39;</span><span class="o">...</span>
+<span class="n">remote</span><span class="p">:</span> <span class="n">Enumerating</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">139</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
+<span class="n">remote</span><span class="p">:</span> <span class="n">Counting</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">139</span><span class="o">/</span><span class="mi">139</span><span class="p">),</span> <span class="n">done</span><span class="o">.</span>
+<span class="n">remote</span><span class="p">:</span> <span class="n">Compressing</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">116</span><span class="o">/</span><span class="mi">116</span><span class="p">),</span> <span class="n">done</span><span class="o">.</span>
+<span class="n">remote</span><span class="p">:</span> <span class="n">Total</span> <span class="mi">139</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">21</span><span class="p">),</span> <span class="n">reused</span> <span class="mi">129</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">16</span><span class="p">),</span> <span class="n">pack</span><span class="o">-</span><span class="n">reused</span> <span class="mi">0</span>
+<span class="n">Receiving</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">139</span><span class="o">/</span><span class="mi">139</span><span class="p">),</span> <span class="mf">6.90</span> <span class="n">MiB</span> <span class="o">|</span> <span class="mf">298.00</span> <span class="n">KiB</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
+<span class="n">Resolving</span> <span class="n">deltas</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">21</span><span class="o">/</span><span class="mi">21</span><span class="p">),</span> <span class="n">done</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>The <strong>pbgl-qtl-bsa</strong> repository should have been cloned successfully. Verify that the download is complete by listing the folders/files in the directory.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -l
+</pre></div>
+</div>
+<p>The folder called <strong>pbgl-qtl-bsa</strong> should be listed in the directory.</p>
+</div>
+<div class="section" id="required-libraries-with-mamba">
+<h3>Required Libraries with Mamba<a class="headerlink" href="#required-libraries-with-mamba" title="Permalink to this headline">¶</a></h3>
+<p>QTL-BSA has multiple dependencies, listed below:</p>
+<ul class="simple">
+<li><p>Bcftools</p></li>
+<li><p>Python</p>
+<ul>
+<li><p>pandas</p></li>
+<li><p>matplotlib</p></li>
+<li><p>scikit-allel</p></li>
+<li><p>seaborn</p></li>
+<li><p>natsort</p></li>
+</ul>
+</li>
+<li><p>Jupyter Notebook</p></li>
+</ul>
+<p>There are two ways to create the <strong>qtl-bsa</strong> virtual environment and install the necessary libraries to run QTL-BSA: automatically or manually.</p>
+<div class="section" id="automatically-faster">
+<h4>Automatically (faster)<a class="headerlink" href="#automatically-faster" title="Permalink to this headline">¶</a></h4>
+<p>One YAML file, <strong>environment.yml</strong>, is provided to automatically create a virtual environment and install the dependent libraries through mamba. The file creates the <strong>qtl-bsa</strong> virtual environment, along Jupyter Notebook, and the Python libraries. Run the <strong>environment.yml</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mamba env create --file envs/environment.yml
+</pre></div>
+</div>
+<p>Once done, a list of the virtual environments available can be seen by running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda env list
+</pre></div>
+</div>
+<p>Activate (enter) the recently-created virtual environment <strong>qtl-bsa</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda activate qtl-bsa
+</pre></div>
+</div>
+<p>Once done, the virtual environment should be activated and all the necessary packages should be installed. This can be verified with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda list
+</pre></div>
+</div>
+</div>
+<div class="section" id="manually-slower">
+<h4>Manually (slower)<a class="headerlink" href="#manually-slower" title="Permalink to this headline">¶</a></h4>
+<p>To manually create and activate an environment, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda create --name qtl-bsa
+$ conda activate qtl-bsa
+</pre></div>
+</div>
+<p>Start running the installations of the necessary libraries:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mamba install python=3.6.7 notebook natsort bcftools pandas matplotlib seaborn scikit-allel --yes
+</pre></div>
+</div>
+<p>Once done, all the necessary packages should be installed. This can be verified with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda list
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="running-jupyter">
+<h2>Running Jupyter<a class="headerlink" href="#running-jupyter" title="Permalink to this headline">¶</a></h2>
+<p>To activate Jupyter, run the following in the terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ jupyter notebook
+</pre></div>
+</div>
+<p>This command will start a Jupyter session inside the directory the command is run. The user can navigate between directories, visualize files, and edit files in a web browser by clicking on directories or files, respectively.</p>
+<p>Look for the directory <strong>pbgl-qtl-bsa</strong> and click on it. Click on <strong>tool</strong> directory, which contains three directories and two Jupyter Notebooks. Here is a breakdown of each:</p>
+<ul class="simple">
+<li><p><cite>Allele_Frequency_Plots_Computomics</cite>:</p>
+<ul>
+<li><p>directory that will contain both tab-files and images output after running a QTL-BSA analysis</p></li>
+</ul>
+</li>
+<li><p><cite>config</cite>:</p>
+<ul>
+<li><p>directory containing configuration files specifying file paths, parameter definitions, list of samples, and list of chromosomes</p></li>
+</ul>
+</li>
+<li><p><cite>scripts</cite>:</p>
+<ul>
+<li><p>directory containing Python scripts with functions for plotting allele frequencies</p></li>
+</ul>
+</li>
+<li><p>two Jupyter Notebooks:</p>
+<ul>
+<li><p>QTL-BSA-sorghum-example.ipynb</p>
+<ul>
+<li><p>example analysis of a comparison between a control and mutant of sorghum</p></li>
+</ul>
+</li>
+<li><p>QTL-BSA.ipynb</p>
+<ul>
+<li><p>template for the user</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Jupyter lets the user duplicate, rename, move, download, view, or edit files in a web browser. This can be done by clicking the box next to a file and choosing accordingly.</p>
+</div>
+<div class="section" id="editing-the-configuration-file">
+<h3>Editing the Configuration File<a class="headerlink" href="#editing-the-configuration-file" title="Permalink to this headline">¶</a></h3>
+<p>In order to run the QTL-BSA Jupyter Notebook, the user needs to feed it with a configuration file (<strong>config-allele-freq.yml</strong>) that specifies the path to the vcf file, list of samples, chromosomes to analyze, and window/step size definitions for calculating and plotting allele frequencies.</p>
+<p>The configuration file <strong>config-allele-freq.yml</strong> can be found in the <strong>pbgl-qtl-bsa/tool/config</strong> directory. The configuration file contains the following fields:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># VCF File information (unzipped .vcf)</span>
+<span class="n">vcf_file</span><span class="p">:</span>
+  <span class="n">path</span><span class="p">:</span>
+  <span class="n">name</span><span class="p">:</span>
+  <span class="n">extension</span><span class="p">:</span>
+
+<span class="c1"># parameters to plot allele frequencies</span>
+<span class="n">window_size</span><span class="p">:</span>
+<span class="n">step_size</span><span class="p">:</span>
+
+<span class="c1"># list of samples</span>
+<span class="n">samples</span><span class="p">:</span>
+  <span class="n">control</span><span class="p">:</span>
+  <span class="n">mutant</span><span class="p">:</span>
+  <span class="n">F2_wild_type</span><span class="p">:</span>
+  <span class="n">F2_mutant</span><span class="p">:</span>
+
+<span class="c1"># chromosomes to analyze</span>
+<span class="n">chromosomes</span><span class="p">:</span>
+  <span class="o">-</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The user needs to edit <strong>config-allele-freq.yml</strong> to point towards a vcf file; specify chromosomes to analyze; and define the parameters to plot allele frequencies. The paths specified in this tutorial manual may not match the paths of the user’s computer.</p>
+</div>
+<p>One example configuration files is provided (<strong>config-allele-freq-sorghum-example.yml</strong>). The configuration file <strong>config-allele-freq.yml</strong> contains multiple fields to be defined by the user.</p>
+<ul class="simple">
+<li><p><cite>vcf_file</cite>:</p>
+<ul>
+<li><p><cite>path</cite> - path to directory containing the vcf file</p></li>
+<li><p><cite>name</cite> - name of the vcf file</p></li>
+<li><p><cite>extension</cite> - type of file; only handles <strong>.vcf</strong> files at the moment</p></li>
+</ul>
+</li>
+<li><p><cite>window_size</cite> - integer specifying the window size to allele frequencies</p></li>
+<li><p><cite>step_size</cite> - integer specifying the step size of the sliding window</p></li>
+<li><p><cite>samples</cite>:</p>
+<ul>
+<li><p><cite>control</cite> - control parent</p></li>
+<li><p><cite>mutant</cite> - mutant parent</p></li>
+<li><p><cite>F2_wild_type</cite> - F2 organism showing wild type phenotype</p></li>
+<li><p><cite>F2_mutant</cite> - F2 organism showing mutant phenotype</p></li>
+</ul>
+</li>
+<li><p><cite>chromosomes</cite> - list of chromosomes to analyze</p></li>
+</ul>
+</div>
+<div class="section" id="running-a-rcnv-seq-template-jupyter-notebook">
+<h3>Running a RCNV_seq-template Jupyter Notebook<a class="headerlink" href="#running-a-rcnv-seq-template-jupyter-notebook" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is recommended to duplicate the <strong>QTL-BSA.ipynb</strong> notebook and then renaming the copy before doing any edits to the notebook.</p>
+</div>
+<p>In the <strong>pbgl-qtl-bsa/tool</strong> directory, click on <strong>QTL-BSA.ipynb</strong> and a new tab in your web-browser will open the notebook.</p>
+<p>The notebook contains cells that are populated by text or code. Instructions are provided in the notebook to guide the user. To run a cell, click on the corresponding cell and click on the <cite>Run</cite> button on the top of the notebook. Another way to run a cell can be done by clicking on the corresponding cell and pressing <strong>Ctrl + Enter</strong> or <strong>Shift + Enter</strong>.</p>
+<p>The notebook consists of 3 sections:</p>
+<ol class="arabic simple">
+<li><p>Import Necessary Libraries and Functions</p></li>
+<li><p>Configuration File Path Definition</p></li>
+<li><p>Plot Allele Frequencies</p></li>
+</ol>
+<p>The third section <strong>Plot Allele Frequencies</strong> has 3 subsections:</p>
+<ol class="arabic simple">
+<li><p>Unweighted Window Sizes</p></li>
+<li><p>Weighted Window Sizes from Configuration File</p></li>
+<li><p>Weighted Window Sizes Defined in Jupyter Notebook</p></li>
+</ol>
+<div class="section" id="import-necessary-libraries-and-functions">
+<h4>Import Necessary Libraries and Functions<a class="headerlink" href="#import-necessary-libraries-and-functions" title="Permalink to this headline">¶</a></h4>
+<p>Imports the functions needed to plot the allele frequencies. All the libraries are imported from <strong>pbgl-qtl-bsa/tool/scripts</strong> directory.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span> <span class="p">]:</span> <span class="kn">from</span> <span class="nn">scripts.plot_allele_freqs</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuration-file-path-definition">
+<h4>Configuration File Path Definition<a class="headerlink" href="#configuration-file-path-definition" title="Permalink to this headline">¶</a></h4>
+<p>Defines the path and name of the configuration path. Configuration files can be found in the <strong>pbgl-qtl-bsa/tool/config</strong> directory.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span> <span class="p">]:</span> <span class="n">config</span> <span class="o">=</span> <span class="s2">&quot;config/config-allele-freq.yml&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="plot-allele-frequencies">
+<h4>Plot Allele Frequencies<a class="headerlink" href="#plot-allele-frequencies" title="Permalink to this headline">¶</a></h4>
+<p>Contains three functions to plot the allele frequencies by extracting information from the configuration file defined previously. These are:</p>
+<ol class="arabic simple">
+<li><p>Plotting Unweighted Window Sizes</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span> <span class="p">]:</span> <span class="n">plot_allele_frequencies_raw</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This function will plot the allele frequencies of an F2 mutant against the F2 wild-type. It does not take into consideration neither the window size nor the step size. The function has no additional parameters.</p>
+<ol class="arabic simple" start="2">
+<li><p>Plotting Weighted Window Sizes from Configuration File</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span> <span class="p">]:</span> <span class="n">plot_allele_frequencies_weighted</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This function will plot the allele frequencies of an F2 mutant against the F2 wild type. It takes into consideration both the window size and step size.</p>
+<p>Running the function as shown will use the values defined in <cite>window_size</cite> and <cite>step_size</cite> inside the configuration file used.</p>
+<ol class="arabic simple" start="3">
+<li><p>Plotting Weighted Window Sizes from Jupyter Notebook</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span> <span class="p">]:</span> <span class="n">plot_allele_frequencies_weighted</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span> <span class="p">,</span> <span class="n">step_size</span><span class="o">=</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>This function provides the user to edit the <cite>window_size</cite> and <cite>step_size</cite> parameters in-place in the Jupyter Notebook without having to go back and edit the configuration file. If the parameters <cite>window_size</cite> and <cite>step_size</cite> are empty, the function will extract these parameter values from the configuration file.</p>
+</div>
+</div>
+</div>
+<div class="section" id="example-tutorial-qtl-bsa-analysis-of-sorghum">
+<h2>Example Tutorial - QTL-BSA Analysis of Sorghum<a class="headerlink" href="#example-tutorial-qtl-bsa-analysis-of-sorghum" title="Permalink to this headline">¶</a></h2>
+<p>In this section of the manual, an example analysis of sorghum will be shown in a step-by-step process. The data has been filtered to show variant locations where the control has genotype ‘0/0’ and the mutant has genotype ‘1/1’. The QTL-BSA analysis will depict an artifact on chromosome Chr04.</p>
+<p>The tutorial is divided between the following sections:</p>
+<ol class="arabic simple">
+<li><p>Data Download</p></li>
+<li><p>General Installations</p></li>
+<li><p>Github Repository Cloning</p></li>
+<li><p>Virtual Environment Creation</p></li>
+<li><p>Configuration File Editing</p></li>
+<li><p>Jupyter Notebook Analysis</p></li>
+</ol>
+<div class="section" id="data-download">
+<h3>Data Download<a class="headerlink" href="#data-download" title="Permalink to this headline">¶</a></h3>
+<p>Running this tutorial requires one variant call format (VCF) file of sorghum crop: <strong>freebayes_D2.filtered.vcf</strong>. It is used in genetics for storing variations of gene sequences.</p>
+<p>The following links can be used to download the necessary VCF file and its correspondig indexed <strong>.tbi</strong> file:</p>
+<ul class="simple">
+<li><p>freebayes_D2.filtered.vcf</p>
+<ul>
+<li><p><a class="reference external" href="https://bss1innov1nafa1poc1.blob.core.windows.net/sample-container/2021_Training/freebayes_D2.filtered.vcf">https://bss1innov1nafa1poc1.blob.core.windows.net/sample-container/2021_Training/freebayes_D2.filtered.vcf</a></p></li>
+</ul>
+</li>
+<li><p>freebayes_D2.filtered.vcf.gz.tbi</p>
+<ul>
+<li><p><a class="reference external" href="https://bss1innov1nafa1poc1.blob.core.windows.net/sample-container/2021_Training/freebayes_D2.filtered.vcf.gz.tbi">https://bss1innov1nafa1poc1.blob.core.windows.net/sample-container/2021_Training/freebayes_D2.filtered.vcf.gz.tbi</a></p></li>
+</ul>
+</li>
+</ul>
+<p>There are two additional ways to download the <strong>.vcf</strong> file and its respective index, besides clicking the links above:</p>
+<ol class="arabic simple">
+<li><p>Linux terminal</p></li>
+<li><p>Web-Browser</p></li>
+</ol>
+<div class="section" id="linux-terminal">
+<h4>Linux Terminal<a class="headerlink" href="#linux-terminal" title="Permalink to this headline">¶</a></h4>
+<p>Open a new terminal and navigate to a directory of choice. We recommend creating a directory to store the data and running <cite>wget</cite> in the respective location:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir vcf_files
+$ cd vcf_files
+$ wget https://bss1innov1nafa1poc1.blob.core.windows.net/sample-container/2021_Training/freebayes_D2.filtered.vcf
+$ wget https://bss1innov1nafa1poc1.blob.core.windows.net/sample-container/2021_Training/freebayes_D2.filtered.vcf.gz.tbi
+</pre></div>
+</div>
+</div>
+<div class="section" id="web-browser">
+<h4>Web-Browser<a class="headerlink" href="#web-browser" title="Permalink to this headline">¶</a></h4>
+<p>Open a web-browser of preference. Copy/paste the links provided above in the address bar. This should automatically begin the download. Move the downloaded files to a location of personal preference.</p>
+</div>
+</div>
+<div class="section" id="general-installations">
+<h3>General Installations<a class="headerlink" href="#general-installations" title="Permalink to this headline">¶</a></h3>
+<p>Open a web browser and copy/paste the following link to download Miniconda3:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html#linux-installers">https://docs.conda.io/en/latest/miniconda.html#linux-installers</a></p></li>
+</ul>
+<p>After download, open a new terminal window, navigate to the directory with the downloaded Miniconda3 installer, and run the installation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The donwloaded Miniconda3 installer file might not match the one run in this example. Please, type the corresponding name of the <strong>.sh</strong> file downloaded.</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ bash Miniconda3-latest-Linux-x86_64.sh
+</pre></div>
+</div>
+<p>Once the Miniconda3 installation is done, close the terminal and open a new one. The word <cite>(base)</cite> should be present to the left of the computer name in the prompt. Update conda and install mamba.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda update --all --yes
+$ conda upgrade --all --yes
+$ conda install mamba --yes
+</pre></div>
+</div>
+</div>
+<div class="section" id="github-repository-cloning">
+<h3>Github Repository Cloning<a class="headerlink" href="#github-repository-cloning" title="Permalink to this headline">¶</a></h3>
+<p>Git or Github is used for storage and version control of software projects. Git is used to manage in a local Linux terminal. First, git will need to be installed. In a new terminal window, run the installation command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mamba install git --yes
+</pre></div>
+</div>
+<p>After installing git, create a location to store Github repoitories, navigate into it, and clone (download a copy locally) of PBGL’s <strong>pbgl-qtl-bsa</strong> repository.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir Github
+$ cd Github
+$ git clone https://github.com/pbgl/pbgl-qtl-bsa.git
+</pre></div>
+</div>
+<p>A successful cloning will output the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Cloning</span> <span class="n">into</span> <span class="s1">&#39;pbgl-qtl-bsa&#39;</span><span class="o">...</span>
+<span class="n">remote</span><span class="p">:</span> <span class="n">Enumerating</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">139</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
+<span class="n">remote</span><span class="p">:</span> <span class="n">Counting</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">139</span><span class="o">/</span><span class="mi">139</span><span class="p">),</span> <span class="n">done</span><span class="o">.</span>
+<span class="n">remote</span><span class="p">:</span> <span class="n">Compressing</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">116</span><span class="o">/</span><span class="mi">116</span><span class="p">),</span> <span class="n">done</span><span class="o">.</span>
+<span class="n">remote</span><span class="p">:</span> <span class="n">Total</span> <span class="mi">139</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">21</span><span class="p">),</span> <span class="n">reused</span> <span class="mi">129</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">16</span><span class="p">),</span> <span class="n">pack</span><span class="o">-</span><span class="n">reused</span> <span class="mi">0</span>
+<span class="n">Receiving</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">139</span><span class="o">/</span><span class="mi">139</span><span class="p">),</span> <span class="mf">6.90</span> <span class="n">MiB</span> <span class="o">|</span> <span class="mf">298.00</span> <span class="n">KiB</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
+<span class="n">Resolving</span> <span class="n">deltas</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">21</span><span class="o">/</span><span class="mi">21</span><span class="p">),</span> <span class="n">done</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Navigate into the cloned repository,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd pbgl-qtl-bsa
+</pre></div>
+</div>
+</div>
+<div class="section" id="virtual-environment-creation">
+<h3>Virtual Environment Creation<a class="headerlink" href="#virtual-environment-creation" title="Permalink to this headline">¶</a></h3>
+<p>Once inside the <strong>pbgl-qtl-bsa</strong> directory, create the <strong>qtl-bsa</strong> virtual environment, install the necessary libraries, and activate the newly created <strong>qtl-bsa</strong> virtual environment.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mamba env create --file envs/environment.yml
+$ conda activate qtl-bsa
+</pre></div>
+</div>
+<p>The name <cite>(qtl-bsa)</cite> environment should be reflected to the left of the computer name in the terminal command prompt.</p>
+</div>
+<div class="section" id="configuration-file-editing">
+<h3>Configuration File Editing<a class="headerlink" href="#configuration-file-editing" title="Permalink to this headline">¶</a></h3>
+<p>Open a Jupyter session by running,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ jupyter notebook
+</pre></div>
+</div>
+<p>Navigate to <strong>pbgl-qtl-bsa/tool/config</strong> and click on <strong>config-allele-freq-sorghum-example.yml</strong>. This will open the configuration file in a new web-browser tab. Copy/paste the following in the configuration file.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <cite>path</cite> to the vcf file will not match. It needs to be edited accordingly to point towards the location of the vcf file stored locally in the user’s computer.</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vcf_file</span><span class="p">:</span>
+  <span class="n">path</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">anibal</span><span class="o">/</span><span class="n">vcf_files</span>
+  <span class="n">name</span><span class="p">:</span> <span class="n">freebayes_D2</span><span class="o">.</span><span class="n">filtered</span>
+  <span class="n">extension</span><span class="p">:</span> <span class="n">vcf</span>
+
+<span class="n">window_size</span><span class="p">:</span> <span class="mi">500000</span>
+<span class="n">step_size</span><span class="p">:</span> <span class="mi">100000</span>
+
+<span class="n">samples</span><span class="p">:</span>
+  <span class="n">control</span><span class="p">:</span> <span class="n">con</span><span class="o">-</span><span class="nb">all</span>
+  <span class="n">mutant</span><span class="p">:</span> <span class="n">D2</span>
+  <span class="n">F2_wild_type</span><span class="p">:</span> <span class="n">D2_F2_TT</span>
+  <span class="n">F2_mutant</span><span class="p">:</span> <span class="n">D2_F2_tt</span>
+
+<span class="n">chromosomes</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">Chr01</span>
+  <span class="o">-</span> <span class="n">Chr02</span>
+  <span class="o">-</span> <span class="n">Chr03</span>
+  <span class="o">-</span> <span class="n">Chr04</span>
+  <span class="o">-</span> <span class="n">Chr05</span>
+  <span class="o">-</span> <span class="n">Chr06</span>
+  <span class="o">-</span> <span class="n">Chr07</span>
+  <span class="o">-</span> <span class="n">Chr08</span>
+  <span class="o">-</span> <span class="n">Chr09</span>
+  <span class="o">-</span> <span class="n">Chr10</span>
+</pre></div>
+</div>
+<p>Save the file and close the tab.</p>
+</div>
+<div class="section" id="jupyter-notebook-analysis">
+<h3>Jupyter Notebook Analysis<a class="headerlink" href="#jupyter-notebook-analysis" title="Permalink to this headline">¶</a></h3>
+<p>In the open Jupyter session, navigate to the <strong>pbgl-qtl-bsa/tool</strong> directory and click on the <strong>QTL-BSA.ipynb</strong> Jupyter Notebook. Begin by running the <strong>Import Necessary Libraries and Functions</strong> section. This can be done by clicking on the cell to be run followed by clicking the <cite>Run</cite> button on the top of the Jupyter Notebook. This cell will import the functions defined in the <strong>pbgl-qtl-bsa/tool/scripts</strong>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span> <span class="p">]:</span> <span class="kn">from</span> <span class="nn">scripts.plot_allele_freqs</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+<p>Type the correct name of the configuration file being loaded under the <strong>Configuration File Path Definitions</strong> section. The configuration file <strong>config-allele-freq-sorghum-example.yml</strong> is loaded from the <strong>pbgl-qtl-bsa/tool/config</strong> directory.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span> <span class="p">]:</span> <span class="n">config</span> <span class="o">=</span> <span class="s2">&quot;config/config-allele-freq-sorghum-example.yml&quot;</span>
+</pre></div>
+</div>
+<p>Run the <strong>Unweighted Window Sizes</strong> subsection under the <strong>Plot Allele Frequencies</strong> section. This function will plot the allele frequencies without taking into consideration <cite>window_size</cite> and <cite>step_size</cite>; the output plot is named <strong>freebayes_D2.filtered.pdf</strong> stored in <strong>pbgl-qtl-bsa/tool/Allele_Frequency_Plots_Computomics</strong>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span> <span class="p">]:</span> <span class="n">plot_allele_frequencies_raw</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="figure align-center" id="id1">
+<img alt="allele-freq-raw" src="_images/allele-freq-raw.png" />
+<p class="caption"><span class="caption-text">Allele frequency plot with unweighted window and step sizes</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>This function will also create a tabulated <strong>.tsv</strong> file named <strong>freebayes_D2.filtered.tsv</strong> stored in <strong>pbgl-qtl-bsa/tool/Allele_Frequency_Plots_Computomics</strong>. This file can be exported to any statistical software tool for further analysis. The file contains the following fields:</p>
+<ul class="simple">
+<li><p><cite>CHROM</cite> - chromosome ID</p></li>
+<li><p><cite>POS</cite> - position in chromosome in base-pair</p></li>
+<li><p><cite>REF</cite> - reference sequence</p></li>
+<li><p><cite>ALT</cite> - alternate sequence</p></li>
+<li><p><cite>RO</cite> - reference allele observation count</p></li>
+<li><p><cite>AO</cite> - alternate allele observation count</p></li>
+<li><p><cite>GT</cite> - genotype</p></li>
+<li><p><cite>GQ</cite> - Genotype Quality, the Phred-scaled marginal (or unconditional) probability of the called genotype</p></li>
+<li><p><cite>SampleRO</cite> - wild-type allele observation count</p></li>
+<li><p><cite>SampleAO</cite> - mutant allele observation count</p></li>
+</ul>
+<div class="figure align-center" id="id2">
+<img alt="tsv-file" src="_images/tsv-file.png" />
+<p class="caption"><span class="caption-text">Output tabulated file</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>All output files are stored in the directory <strong>pbgl-qtl-bsa/tool/Allele_Frequency_Plots_Computomics</strong>.</p>
+<p>In order to plot the allele frequencies using the window and step sizes, run the subsection <strong>Weighted Window Sizes from Configuration File</strong>. The parameters <cite>window_size</cite> and <cite>step_size</cite> are extracted from the configuration file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span> <span class="p">]:</span> <span class="n">plot_allele_frequencies_weighted</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The plot using <cite>window_size=500000</cite> and <cite>step_size=100000</cite> from the configuration file outputs the following figure:</p>
+<div class="figure align-center" id="id3">
+<img alt="allele-freq-nb" src="_images/allele-freq-nb.png" />
+<p class="caption"><span class="caption-text">Allele frequency plot with window_size=500000 and step_size=100000</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>In order to modify the <cite>window_size</cite> and <cite>step_size</cite> parameters in the Jupyter Notebook without the need of remodifying the configuration file, the <cite>plot_allele_frequencies_weighted</cite> function has two parameters that can be defined to create allele frequencies plots with varying window and step sizes.</p>
+<p>Run the <strong>Weighted Window Sizes Defined in Jupyter Notebook</strong> subsection with bigger window and step sizes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span> <span class="p">]:</span> <span class="n">plot_allele_frequencies_weighted</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">5000000</span> <span class="p">,</span> <span class="n">step_size</span><span class="o">=</span><span class="mi">1000000</span> <span class="p">)</span>
+</pre></div>
+</div>
+<div class="figure align-center" id="id4">
+<img alt="allele-freq-config" src="_images/allele-freq-config.png" />
+<p class="caption"><span class="caption-text">Allele frequency plot with window_size=5000000 and step_size=1000000</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<p>This last plot using <cite>window_size=5000000</cite> and <cite>step_size=1000000</cite> clearly shows a variant present in Chr04. Knowing where artifacts like this one is located plays a major role in identifying and visualizing variants in an organism. The user can, in turn, use different tools, like the Integrative Genomics Viewer (IGV), for further analysis.</p>
+<p>This culminates the tutorial.</p>
+</div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p><strong>GitHub repositories</strong>:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/pbgl/pbgl-qtl-bsa">pbgl/pbgl-qtl-bsa</a></p></li>
+<li><p><a class="reference external" href="https://github.com/amora197/pbgl-qtl-bsa">amora197/pbgl-qtl-bsa</a></p></li>
+<li><p><a class="reference external" href="https://github.com/AnzaGhaffar/QTL-Snakemake-Workflow">AnzaGhaffar/QTL-Snakemake-Workflow</a></p></li>
+</ul>
+</div>
 </div>
 
 

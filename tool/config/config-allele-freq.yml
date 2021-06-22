@@ -1,16 +1,20 @@
+# VCF File information (unzipped .vcf)
 vcf_file:
   path: 
   name: 
   extension: 
-  
+
+# parameters to plot allele frequencies
 window_size: 
 step_size: 
 
+# list of samples
 samples:
   control: 
   mutant: 
   F2_wild_type: 
   F2_mutant: 
 
+# chromosomes to analyze
 chromosomes:
   - 
