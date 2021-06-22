@@ -6,6 +6,12 @@
 PBGL QTL-BSA Analysis
 =====================
 
+The online tutorial can be found in the Read-the-Docs website by clicking on the **PBGL QTL-BSA Read-theDocs** or copy/pasting the link:
+
+- `PBGL QTL-BSA Read-the-Docs <https://pbgl-qtl-bsa.readthedocs.io/en/latest/>`_
+
+ - https://pbgl-qtl-bsa.readthedocs.io/en/latest/
+
 Background
 ----------
 
