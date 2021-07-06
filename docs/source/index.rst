@@ -12,7 +12,7 @@ PBGL QTL-BSA Analysis
 Background
 ----------
 
-Quantitative trai locus - bulk segregant analysis (QTL-BSA) using allele frequencies, bcftools, Python, Jupyter Notebooks, Miniconda3, Mamba, and Git.
+Quantitative trait locus - bulk segregant analysis (QTL-BSA) using allele frequencies, bcftools, Python, Jupyter Notebooks, Miniconda3, Mamba, and Git.
 
 All the commands run in a Linux terminal are preceded by the `$` prompt sign. To run a command, copy/past the command without the `$` sign. Those commands run in a Jupyter Notebook are preceded by the `In [ ]:` 
 
